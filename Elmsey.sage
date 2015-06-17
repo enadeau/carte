@@ -1,3 +1,5 @@
+#Je rajoute du text pour voir si github va le mettre à jour dans mon ordi
+
 def words(alphabet):
     yield ""
     for word in words(alphabet):
