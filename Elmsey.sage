@@ -1,4 +1,10 @@
+
 load('Melange.sage')
+
+#Je rajoute du text pour voir si github va le mettre à jour dans mon ordi
+#et encore un peu
+
+
 def words(alphabet):
     yield ""
     for word in words(alphabet):
