@@ -11,7 +11,7 @@ def aff_unique_sol(minn,borne):
             seq=sequence_elmsley(n,i)
             if len(seq)==1:
                 print str(n)+':'+str(i)+':'+seq[0]
-
+#un commentaire:Stéphanie rajoute du texte dans le fichier
 def test_puissance2():
     r""" Test si la méthode sequence_elmseley et sequence_elmsley sont cohérente entre elle"""
     for n in range(1,8):
