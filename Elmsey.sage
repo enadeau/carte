@@ -131,3 +131,43 @@ def dessin_length(table):
         for i in range(n):
             dessin+=points((i,n),color=set_color(len(table[n/2-1][i][0])))
     return dessin
+
+def sequence_elmsley_puissance2(nbcarte, position):
+    r"""Prend un deck de 2^n carte de retourne la sequence pour amerner la carte àa la position sur le dessus
+
+    >>>> sequence_elmsey_puissance2(8,0)
+    ''
+    >>>> sequence_elmsey_puissance2(8,6)
+    'ooi'
+    t"""
+    assert position<nbcarte
+    position_bit=Integer(position).bits()[::-1]
+    k=log(nbcarte,2)
+    while len(position_bit)<k:
+        position_bit.insert(0,0) 
+    while 1 in position_bit:
+        tr=position_bit[0]
+        if position_bit[0]==0:
+            for i in range(k-1):
+                position_bit[i]=position_bit[i+1]
+        else:
+            for i in range(k-1):
+                if position_bit[i+1]==0 or position_bit[i+1]==1:
+                    position_bit[i]=1-position_bit[i+1]
+                elif position_bit[i+1][0]=='+':
+                    position_bit[i]=position_bit[i+1]
+                    position_bit[i][0]='-'
+                else:
+                    position_bit[i]=position_bit[i+1]
+                    position_bit[i][0]='+'
+        position_bit[k-1]=['+',tr]
+    i=k-1
+    chaine=''
+    while position_bit.count(1)+position_bit.count(0)!=k:
+        if position_bit[i]==['+',1] or position_bit[i]==['-',0]:
+            chaine='i'+chaine
+        else:
+            chaine='o'+chaine
+        position_bit[i]=0
+        i=i-1
+    return chaine
