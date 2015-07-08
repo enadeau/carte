@@ -1,0 +1,5 @@
+Latex/*
+*.DS_Store
+*.txt
+cProfil
+test_profilage.sage

@@ -171,3 +171,7 @@ def sequence_elmsley_puissance2(nbcarte, position):
         position_bit[i]=0
         i=i-1
     return chaine
+
+def longueur_selon_2n(n):
+    liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
+    return liste
