@@ -175,3 +175,10 @@ def sequence_elmsley_puissance2(nbcarte, position):
 def longueur_selon_2n(n):
     liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
     return liste
+
+def position_frontiere(n):
+    factorisation=factor(n)
+    k=list(factorisation)[0][1]
+    liste=[n/2^k*t for t in range (2^k)]+[n/2^k*t-1 for t in range(1,2^k+1)]
+    liste.sort()    
+    return liste
