@@ -182,3 +182,13 @@ def position_frontiere(n):
     liste=[n/2^k*t for t in range (2^k)]+[n/2^k*t-1 for t in range(1,2^k+1)]
     liste.sort()    
     return liste
+
+def graphe_longueur(n):
+    longueur=longueur_selon_2n(n)
+    fr=position_frontiere(n)
+    dessin=line([(i,longueur[i]) for i in range(n)])
+    maxi=max(longueur)
+    for i in range(1,len(fr)-1,2):
+        pos=(fr[i]+fr[i+1])/2
+        dessin=dessin+line([(pos,0),(pos,maxi)],color='red')
+    return dessin
