@@ -192,3 +192,16 @@ def graphe_longueur(n):
         pos=(fr[i]+fr[i+1])/2
         dessin=dessin+line([(pos,0),(pos,maxi)],color='red')
     return dessin
+
+def sequence_elmsley_formater(n,i):
+    factorisation=factor(n)
+    k=list(factorisation)[0][1]
+    if i in position_frontiere(n):
+        return sequence_elmsley(n,i)
+    else:
+        retour=[]
+        for w in sequence_elmsley(n,i):
+            print w
+            w=w[:(-(k+1))]+'|*|'+w[-(k+1):]
+            retour.append(w)
+        return retour 
