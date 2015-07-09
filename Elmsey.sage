@@ -201,7 +201,6 @@ def sequence_elmsley_formater(n,i):
     else:
         retour=[]
         for w in sequence_elmsley(n,i):
-            print w
             w=w[:(-(k+1))]+'|*|'+w[-(k+1):]
             retour.append(w)
         return retour 
