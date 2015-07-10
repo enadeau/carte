@@ -93,6 +93,15 @@ def construire_table(max):
             table[n/2-1][i]=sequence_elmsley(n,i)
     return table
 
+def construire_table2(max):
+    nb_carte=max
+    table=[[[]] * nb_carte for _ in range(nb_carte/2)]
+    for n in range(2,nb_carte+1,2):
+        k=list(factor(n))[0][1]
+        for i in range(n):
+            table[n/2-1][i]=[sequence_elmsley(n,i)[0][:-(k+1)]]
+    return table
+
 def dessin_card(table):
     dessin_card=points((0,0),color='black')
     for n in range(2,len(table)*2+1,2):
