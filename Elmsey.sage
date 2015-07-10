@@ -141,6 +141,35 @@ def dessin_length(table):
             dessin+=points((i,n),color=set_color(len(table[n/2-1][i][0])))
     return dessin
 
+def set_color2(n):
+    if n==1:
+        return 'pink'
+    elif n==2:
+        return 'red'
+    elif n==3:
+        return 'purple'
+    elif n==4:
+        return 'yellow'
+    elif n==5:
+        return 'green'
+    elif n==6:
+        return 'blue'
+    elif n==7:
+        return 'gold'
+    elif n==8:
+        return 'orange'
+    else:
+        return 'black'
+
+def dessin_length2(table):
+    dessin=points((0,0),color='black')
+    for n in range(2,len(table)*2+1,2):
+        for i in range(n):
+            dessin+=points((i,n),color=set_color2(len(table[n/2-1][i][0])))
+    return dessin
+
+
+
 def sequence_elmsley_puissance2(nbcarte, position):
     r"""Prend un deck de 2^n carte de retourne la sequence pour amerner la carte àa la position sur le dessus
 
