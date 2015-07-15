@@ -165,7 +165,14 @@ def dessin_length2(table):
     dessin=points((0,0),color='black')
     for n in range(2,len(table)*2+1,2):
         for i in range(n):
-            dessin+=points((i,n),color=set_color2(len(table[n/2-1][i][0])))
+            mot=table[n/2-1][i][0]
+            if mot[:1]=='i':
+                alpha=1
+            elif mot[:1]=='o':
+                alpha=0.3
+            else:
+                alpha=0
+            dessin+=points((i,n),color=set_color2(len(table[n/2-1][i][0])),alpha=alpha)
     return dessin
 
 
