@@ -221,6 +221,17 @@ def longueur_selon_2n(n):
     liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
     return liste
 
+def mot_sspaquet(taille):
+    mot=[]
+    for i in range(1,taille/2+1):
+        seq=sequence_elmsley_formater(2*taille,i)
+        seq=seq[0].split('|*|')[0]
+        mot.append(len(seq))
+    extension=mot[:-1]
+    extension=extension[::-1]
+    mot.extend(extension)
+    return mot
+    
 def position_frontiere(n):
     factorisation=factor(n)
     k=list(factorisation)[0][1]
