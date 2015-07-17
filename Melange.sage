@@ -22,7 +22,7 @@ class Melange:
         return egal
 
     def to_permutation(self):
-        return Permutation([carte.numero+1 for carte in self.melange])
+        return Permutation([carte.numero+1 for carte in self.melange]).inverse()
 
     @staticmethod
     def to_melange(permutation):
