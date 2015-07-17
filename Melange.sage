@@ -3,16 +3,19 @@ load("Carte.sage")
 class Melange:
 
     def __init__(self, length):
+        r"""Crée un mélange avec les cartes dans l'ordre """
         self.melange=[Carte(i,false) for i in range(length)]
         self.length=length
 
     def __repr__(self):
+        r"""Make a string representation of the deck, seperating cards by |"""
         chaine="|"
         for carte in self.melange:
             chaine=chaine+carte.__repr__()+"|"
         return chaine
 
     def __eq__(self,other):
+        r"""Shuffle are egal, if and only if each number is at the same place et de flip state of each card is the same"""
         if(self.length!=other.length):
             return false
         egal=true
@@ -22,10 +25,12 @@ class Melange:
         return egal
 
     def to_permutation(self):
+        r"""Return de permutation associate with the deck given in comparison with the intial non-suffled deck. It don't take in consideration whatever the aards are flip or not"""
         return Permutation([carte.numero+1 for carte in self.melange]).inverse()
 
     @staticmethod
     def to_melange(permutation):
+        r"""Take a permutation and return the shuffle associate with"""
         paquet=Melange(len(permutation))
         for i in range(len(permutation)):
             paquet.melange[i]=Carte(permutation[i]-1,False)
