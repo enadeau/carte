@@ -1,6 +1,8 @@
 load("Carte.sage")
 
 class Melange:
+    r"""Class giving to to perform different shuffle on a deck of cards
+    for detail on the different shuffle see Butler, Steve, Persi Diaconis, and Ron Graham. "The mathematics of the flip and horseshoe shuffles." arXiv preprint arXiv:1412.8533 (2014)."""
 
     def __init__(self, length):
         r"""Crée un mélange avec les cartes dans l'ordre """
@@ -37,13 +39,16 @@ class Melange:
         return paquet
 
     def flipper(self):
+        r"""Flip each card of the deck"""
         for carte in self.melange:
             carte.flipper()
 
     def reverse_order(self):
+        r"""Reverse the order of the deck. The first card become the last et the last card become the first"""
         self.melange.reverse()
 
     def out_flip(self):
+        r"""Perform an out version of the flip shuffle on the deck"""
         n=self.length/2
         top=[self.melange[i] for i in range(n)]
         bottom=[self.melange[i] for i in range(n,2*n)]
@@ -55,6 +60,7 @@ class Melange:
             self.melange.append(bottom[n-1-i])
 
     def inverse_out_flip(self):
+        r"""Perfomr the inverse of the out version of the flip shuffle on the deck"""
         pile1=[]
         pile2=[]
         for i in range(0,self.length,2):
@@ -66,6 +72,7 @@ class Melange:
         self.melange.extend(pile2)
 
     def in_flip(self):
+        r"""Perform the in version of the flip shuffle on the deck"""
         n=self.length/2
         top=[self.melange[i] for i in range(n)]
         bottom=[self.melange[i] for i in range(n,2*n)]
@@ -77,6 +84,7 @@ class Melange:
             self.melange.append(top[i])
 
     def inverse_in_flip(self):
+        r"""Perform the inverse of the in version of the flip shuffle on the deck"""
         pile1=[]
         pile2=[]
         for i in range(0,self.length,2):
@@ -88,6 +96,7 @@ class Melange:
         self.melange.extend(pile1)
 
     def out_faro(self):
+        r"""Perform the out version of the faro shuffle on the deck"""
         pile1=[]
         pile2=[]
         n=self.length/2
@@ -99,6 +108,7 @@ class Melange:
             self.melange.append(pile2[i])
 
     def in_faro(self):
+        r"""Perform the in version of the faro shuffle on the deck"""
         self.melange.append(Carte(0,True))
         self.melange.insert(0,Carte(0,True))
         self.length+=2
@@ -108,6 +118,7 @@ class Melange:
         self.length-=2
         
     def out_horse(self):
+        r"""Perform the out version of the horseshoe shuffle on the deck"""
         n=self.length/2
         top=[self.melange[i] for i in range(n)]
         bottom=[self.melange[i] for i in range(n,2*n)]
@@ -117,6 +128,7 @@ class Melange:
             self.melange.append(bottom[n-1-i])
             
     def in_horse(self):
+        r"""Perform the in version of the horseshoe shuffle on the deck"""
         n=self.length/2
         top=[self.melange[i] for i in range(n)]
         bottom=[self.melange[i] for i in range(n,2*n)]
@@ -126,6 +138,7 @@ class Melange:
             self.melange.append(top[i])
 
     def inverse_out_horse(self):
+        r"""Perform the inverse of the out version of the horseshoe shuffle on the deck"""
         top=[]
         bottom=[]
         for i in range(0,self.length,2):
@@ -136,6 +149,7 @@ class Melange:
         self.melange.extend(bottom)
 
     def inverse_in_horse(self):
+        r"""Perform the inverse of the in version of the horseshoe shuffle on the deck"""
         top=[]
         bottom=[]
         for i in range(0,self.length,2):
