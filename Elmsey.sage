@@ -1,12 +1,16 @@
+r"""Some methhod to work on Elmsey problem for the horseshoe shuffle"""
 load('Melange.sage')
 
 def words(alphabet):
+    r"""Generator of words. Return all the words contains in the alpahabet in order of increasing length"""
     yield ""
     for word in words(alphabet):
         for letter in alphabet:
             yield letter+word
 
 def word_to_permutation(mot,inn,out):
+    r"""Take a words on the alphabet {i,o} and permutations associate to the in and the out shuffle and 
+    return the permutation associate with performing all the shuffle in the word in reading from left to rigth"""
     if mot=='':
         return Permutation([i for i in range(1,len(inn)+1)])
     s=Permutation([])
@@ -18,6 +22,7 @@ def word_to_permutation(mot,inn,out):
     return s
 
 def words_by_length(alphabet, length):
+    r"""Generator of all the words of a certain length on the alphabet"""
     if length==0:
         yield ""
     else:
@@ -26,7 +31,9 @@ def words_by_length(alphabet, length):
                 yield letter+word
 
 def sequence_elmsley(nombre_carte,position):
-    #pour les mélanges horse, donne le mot en "io" pour amener carte position vers le top
+    r"""Return the shortest words for wich the card at the position in a deck of
+    nombre_carte is on top after performing the sequence of horseshoe shuffle describe by the words
+    You can have more tham one word that satisfied the condition"""
     melange=Melange(nombre_carte)
     melange.out_horse()
     out=melange.to_permutation()
@@ -48,6 +55,7 @@ def sequence_elmsley(nombre_carte,position):
     return solution
 
 def construire_dictionnaire(nombre_carte,longueur):
+    r"""Return a dictonnary of all the permutation associated to words of length <= longueur"""
     melange=Melange(nombre_carte)
     melange.out_horse()
     out=melange.to_permutation()
@@ -77,8 +85,6 @@ def nb_sol_conjecture(y,x):
     if x==y-1 or x==0:
         return 1
     while Mod(y,2^n)==0:
-#        if y==2^n:
-#            return 1
         for i in range(1,2^n,2):
             if y==2^n*x/i or y==2^n*(x+1)/i:
                 return 1
@@ -178,7 +184,7 @@ def dessin_length2(table):
 
 
 def sequence_elmsley_puissance2(nbcarte, position):
-    r"""Prend un deck de 2^n carte de retourne la sequence pour amerner la carte àa la position sur le dessus
+    r"""Prend un deck de 2^n carte de retourne la sequence pour amerner la carte à la position sur le dessus
 
     >>>> sequence_elmsey_puissance2(8,0)
     ''
