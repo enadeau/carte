@@ -186,11 +186,12 @@ def dessin_length2(table):
 def sequence_elmsley_puissance2(nbcarte, position):
     r"""Prend un deck de 2^n carte de retourne la sequence pour amerner la carte à la position sur le dessus
 
-    >>>> sequence_elmsey_puissance2(8,0)
+    >>> sequence_elmsey_puissance2(8,0)
     ''
-    >>>> sequence_elmsey_puissance2(8,6)
+    >>> sequence_elmsey_puissance2(8,6)
     'ooi'
-    t"""
+    t
+    """
     assert position<nbcarte
     position_bit=Integer(position).bits()[::-1]
     k=log(nbcarte,2)
@@ -224,6 +225,11 @@ def sequence_elmsley_puissance2(nbcarte, position):
     return chaine
 
 def longueur_selon_2n(n):
+    r"""Return a liste of the length for the Elmsey sequences for all the position in a deck of n cards
+
+    >>> longueur_selon_2n(10)[5]
+    3
+    """
     liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
     return liste
 
