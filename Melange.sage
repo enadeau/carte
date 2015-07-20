@@ -28,7 +28,7 @@ class Melange:
 
     def to_permutation(self):
         r"""Return de permutation associate with the deck given in comparison with the intial non-suffled deck. It don't take in consideration whatever the aards are flip or not"""
-        return Permutation([carte.numero+1 for carte in self.melange]).inverse()
+        return Permutation([carte.numero+1 for carte in self.melange])
 
     @staticmethod
     def to_melange(permutation):
