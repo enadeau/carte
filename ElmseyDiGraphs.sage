@@ -61,7 +61,7 @@ def elmsey_digraph(n):
     Directed graph representing the minimal distance from any vertex to the
     initial vertex (1) under the action of the in and out horseshoe shuffles.
     """
-    shuffles = horse_shuffles_as_permutations(n)
+    shuffles = horseshoe_shuffles_as_permutations(n)
 
     H = permutation_action_digraph(shuffles)
 
