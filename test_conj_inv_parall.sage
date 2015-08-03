@@ -74,8 +74,8 @@ def sequence_elmsley_inv_selon_conj(nombre_carte,position):
         retour.add(binaire_to_sequence(Integer(2*nombre_carte-position-1).binary()))
     return retour
 
-def run_test(max,thread):
-    for n in range(2,max,2*thread):
+def run_test(min, max,thread):
+    for n in range(min,max+1,2*thread):
         thread_list=[test(i) for i in range(n,n+2*thread,2)]
         for t in thread_list:
             t.start()
