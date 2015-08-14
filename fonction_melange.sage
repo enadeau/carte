@@ -33,4 +33,4 @@ def inv_out(n,i):
 def prec(n,i):
     assert Mod(n,2)==0
     assert 0<=i and i<n
-    return [floor(i/2), n-floor(i/2)-1]
+    return dict([(0,floor(i/2)), (1,n-floor(i/2)-1)])

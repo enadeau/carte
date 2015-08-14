@@ -114,13 +114,14 @@ def dessin_card(table):
         for i in range(n):
             if len(table[n/2-1][i])==1:
                 dessin_card+=points((i,n),color='red')
-	    elif len(table[n/2-1][i])==2:
+    	    elif len(table[n/2-1][i])==2:
                 dessin_card+=points((i,n),color='green',alpha=0.4)
             else:
                 dessin_card+=points((i,n),color='black')
     return dessin_card
 
 def set_color(n):
+
     if n==1:
         return 'gold'
     elif n==2:
@@ -175,7 +176,7 @@ def dessin_length2(table):
             if mot[:1]=='i':
                 alpha=1
             elif mot[:1]=='o':
-                alpha=0.3
+                alpha=0.5
             else:
                 alpha=0
             dessin+=points((i,n),color=set_color2(len(table[n/2-1][i][0])),alpha=alpha)
