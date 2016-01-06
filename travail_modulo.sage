@@ -41,3 +41,31 @@ def vertex_to_position(vertex,m):
     j=vertex[1]
     k=vertex[2]
     return (i*m-j)/(2^(k+1))
+
+def my_view(x, **options):
+    r"""
+    In order to use this function to output nice PDF images of the
+    digraphs, one needs to have graphviz installed and the dot2tex
+    sage package:
+
+    (1) To install graphviz, go to the website: www.graphviz.org
+
+    (2) To install the dot2tex Sage package, execute from the command line::
+
+        sage -i dot2tex && sage -br
+
+    """
+    options["tightpage"] = True
+    options["pdflatex"] = True
+    latex_options = {
+        'format': "dot2tex",
+        'prog' : 'dot',
+        'edge_labels': True,
+        'color_by_label' : { "1":"blue", "2":"red","3":"green","4":"yellow"},
+        }
+    if x._latex_opts is not None:
+        latex_options.update(x._latex_opts._options)
+    x = copy(x)
+    x.set_latex_options(**latex_options)
+    view(x, **options)
+
