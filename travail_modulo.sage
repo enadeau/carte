@@ -25,8 +25,7 @@ def graph_modulo(n):
 	             i=vertex[0]
 		     j=vertex[1]
 		     k=vertex[2]
-		     print str(i)+"   "+str(j)+"   "+str(k)
-	             son1=(i,j,k+1)
+             son1=(i,j,k+1)
 		     son2=(2^(k+1)-i,2^k-j,k+1)
 		     son3=(i,2^k+j,k+1)
 		     son4=(2^(k+1)-i,2^(k+1)-j,k+1)
