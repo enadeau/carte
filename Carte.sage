@@ -1,8 +1,8 @@
 class Carte:
-    """Classe définissant une carte qui est cractérisé par un numéro et un état de flip (à savoir sir la carte est dans sa position normale ou si ellea ses chiffre sur le dessus."""
+    """Classe définissant une carte qui est cractérisé par un numéro et un état de flip (à savoir si la carte est dans sa position normale ou si elle ses chiffres sur le dessus."""
     
     def __init__(self,numero,flip):
-        """Constructeur d'une carte. Prend en paramètre le numéro de la carte et true sir la carte est flipper, false sinon"""
+        """Constructeur d'une carte. Prend en paramètre le numéro de la carte et true si la carte est flipper, false sinon"""
         self.numero=numero
         self.flip=flip
 

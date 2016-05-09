@@ -33,7 +33,7 @@ def words_by_length(alphabet, length):
 def sequence_elmsley(nombre_carte,position):
     r"""Return the shortest words for wich the card at the position in a deck of
     nombre_carte is on top after performing the sequence of horseshoe shuffle describe by the words
-    You can have more tham one word that satisfied the condition"""
+    You can have more then one word that satisfied the condition"""
     melange=Melange(nombre_carte)
     melange.out_horse()
     out=melange.to_permutation()
@@ -55,7 +55,8 @@ def sequence_elmsley(nombre_carte,position):
     return solution
 
 def construire_dictionnaire(nombre_carte,longueur):
-    r"""Return a dictonnary of all the permutation associated to words of length <= longueur"""
+    r"""Return a dictonnary of all the permutation associated to words of length <= longueur
+    for a deck of nb_carte"""
     melange=Melange(nombre_carte)
     melange.out_horse()
     out=melange.to_permutation()
@@ -81,6 +82,7 @@ def construire_dictionnaire(nombre_carte,longueur):
     return dictionnaire
 
 def nb_sol_conjecture(y,x):
+    r"""Return the number of solution to Elmsley's problem assuming our conjecture is true """
     n=1
     if x==y-1 or x==0:
         return 1
@@ -92,6 +94,8 @@ def nb_sol_conjecture(y,x):
     return 2
 
 def construire_table(max):
+    r"""Build a table of solutions to elmsley problem for deck of size <= max
+    construire_table[nb_carte/2-1][position] give the solution for a deck of nb_carte for position """
     nb_carte=max
     table=[[[]] * nb_carte for _ in range(nb_carte/2)]
     for n in range(2,nb_carte+1,2):
@@ -100,6 +104,7 @@ def construire_table(max):
     return table
 
 def construire_table2(max):
+    r"""A quoi sert cette methode??? """
     nb_carte=max
     table=[[[]] * nb_carte for _ in range(nb_carte/2)]
     for n in range(2,nb_carte+1,2):
@@ -109,6 +114,10 @@ def construire_table2(max):
     return table
 
 def dessin_card(table):
+    r"""Draw a graph of the cardinality of the solution to elmsley problem
+    red-Unicity of the solution
+    green-two solutions
+    balck-other"""
     dessin_card=points((0,0),color='black')
     for n in range(2,len(table)*2+1,2):
         for i in range(n):
@@ -121,7 +130,7 @@ def dessin_card(table):
     return dessin_card
 
 def set_color(n):
-
+    r"""Associate a color to n for n between 0 and 8"""
     if n==1:
         return 'gold'
     elif n==2:
@@ -142,6 +151,8 @@ def set_color(n):
         return 'black'
 
 def dessin_length(table):
+    r"""Produce a graphic representation of the lenght of the elmsley's sequence using
+    the color encoding of set_color"""
     dessin=points((0,0),color='black')
     for n in range(2,len(table)*2+1,2):
         for i in range(n):
@@ -149,6 +160,7 @@ def dessin_length(table):
     return dessin
 
 def set_color2(n):
+    r"""Associate a color to n for n between 0 and 8"""
     if n==1:
         return 'pink'
     elif n==2:
@@ -169,6 +181,9 @@ def set_color2(n):
         return 'black'
 
 def dessin_length2(table):
+    r"""Produce a graphic representation of the lenght of the elmsley's sequence using
+    the color encoding of set_color2
+    Y-a-t-il un raison pour l'existence de ce truc vs l'autre2"""
     dessin=points((0,0),color='black')
     for n in range(2,len(table)*2+1,2):
         for i in range(n):
@@ -225,16 +240,18 @@ def sequence_elmsley_puissance2(nbcarte, position):
         i=i-1
     return chaine
 
-def longueur_selon_2n(n):
+def longueur_selon_n(n):
     r"""Return a liste of the length for the Elmsey sequences for all the position in a deck of n cards
 
-    >>> longueur_selon_2n(10)[5]
+    >>> longueur_selon_n(10)[5]
     3
     """
     liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
     return liste
 
 def mot_sspaquet(taille):
+    r"""Gives the list for the lenght of the sequences to get a card in a subdeck to a boundary
+    Est-ce que ça marche vraiment, c'est quoi les fondement mathématique de ça"""
     mot=[]
     for i in range(1,taille/2+1):
         seq=sequence_elmsley_formater(2*taille,i)
@@ -246,14 +263,17 @@ def mot_sspaquet(taille):
     return mot
     
 def position_frontiere(n):
+    r"""Return the list of boundary position in a deck of n cards"""
     factorisation=factor(n)
     k=list(factorisation)[0][1]
     liste=[n/2^k*t for t in range (2^k)]+[n/2^k*t-1 for t in range(1,2^k+1)]
-    liste.sort()    
+    liste.sort()
     return liste
 
 def graphe_longueur(n):
-    longueur=longueur_selon_2n(n)
+    r"""Plot the lenght of the sequence depending o position in a deck of n cards
+    Red lines represent the position of the boundary in the deck"""
+    longueur=longueur_selon_n(n)
     fr=position_frontiere(n)
     dessin=line([(i,longueur[i]) for i in range(n)])
     maxi=max(longueur)
@@ -263,6 +283,8 @@ def graphe_longueur(n):
     return dessin
 
 def sequence_elmsley_formater(n,i):
+    r"""Return the elmsley's sequence of the card in position i in a deck of n cards
+    |*| is insert in the sequences after the shuffle that get the cards to the order k boundary"""
     factorisation=factor(n)
     k=list(factorisation)[0][1]
     if i in position_frontiere(n):

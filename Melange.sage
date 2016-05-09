@@ -5,7 +5,7 @@ class Melange:
     for detail on the different shuffle see Butler, Steve, Persi Diaconis, and Ron Graham. "The mathematics of the flip and horseshoe shuffles." arXiv preprint arXiv:1412.8533 (2014)."""
 
     def __init__(self, length):
-        r"""Crée un mélange avec les cartes dans l'ordre """
+        r"""Create a deck with card in order"""
         self.melange=[Carte(i,false) for i in range(length)]
         self.length=length
 
@@ -17,7 +17,7 @@ class Melange:
         return chaine
 
     def __eq__(self,other):
-        r"""Shuffle are egal, if and only if each number is at the same place et de flip state of each card is the same"""
+        r"""Decks are egal, if and only if each number is at the same place et de flip state of each card is the same"""
         if(self.length!=other.length):
             return false
         egal=true
@@ -27,7 +27,7 @@ class Melange:
         return egal
 
     def to_permutation(self):
-        r"""Return de permutation associate with the deck given in comparison with the intial non-suffled deck. It don't take in consideration whatever the aards are flip or not"""
+        r"""Return de permutation associate with the deck given in comparison with the intial non-suffled deck. It don't take in consideration whatever the cards are flip or not"""
         return Permutation([carte.numero+1 for carte in self.melange])
 
     @staticmethod
