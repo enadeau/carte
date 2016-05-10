@@ -15,25 +15,25 @@ def quatre(p,m):
     return m-(p+2)/2
 
 def graph_modulo(n):
-	r"""Directed tree representing the four possible position obtain by applying the four inverse operation possible"""
-	G=DiGraph()
-	starting_vertex=(1,1,1)
-	G.add_vertex(starting_vertex)
-	for t in range(1,n):
-	     for vertex in G:
-	         if vertex[2]==t:
-	             i=vertex[0]
-		     j=vertex[1]
-		     k=vertex[2]
-             son1=(i,j,k+1)
-		     son2=(2^(k+1)-i,2^k-j,k+1)
-		     son3=(i,2^k+j,k+1)
-		     son4=(2^(k+1)-i,2^(k+1)-j,k+1)
-		     G.add_edge(vertex,son1,'1')
-		     G.add_edge(vertex,son2,'2')
-		     G.add_edge(vertex,son3,'3')
-		     G.add_edge(vertex,son4,'4')
-	return G
+    r"""Directed tree representing the four possible position obtain by applying the four inverse operation possible"""
+    G=DiGraph()
+    starting_vertex=(1,1,1)
+    G.add_vertex(starting_vertex)
+    for t in range(1,n):
+        for vertex in G:
+            if vertex[2]==t:
+                i=vertex[0]
+            j=vertex[1]
+            k=vertex[2]
+            son1=(i,j,k+1)
+            son2=(2^(k+1)-i,2^k-j,k+1)
+            son3=(i,2^k+j,k+1)
+            son4=(2^(k+1)-i,2^(k+1)-j,k+1)
+            G.add_edge(vertex,son1,'1')
+            G.add_edge(vertex,son2,'2')
+            G.add_edge(vertex,son3,'3')
+            G.add_edge(vertex,son4,'4')
+    return G
 
 def vertex_to_position(vertex,m):
     i=vertex[0]
