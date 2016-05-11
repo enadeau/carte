@@ -23,16 +23,16 @@ def graph_modulo(n):
         for vertex in G:
             if vertex[2]==t:
                 i=vertex[0]
-            j=vertex[1]
-            k=vertex[2]
-            son1=(i,j,k+1)
-            son2=(2^(k+1)-i,2^k-j,k+1)
-            son3=(i,2^k+j,k+1)
-            son4=(2^(k+1)-i,2^(k+1)-j,k+1)
-            G.add_edge(vertex,son1,'1')
-            G.add_edge(vertex,son2,'2')
-            G.add_edge(vertex,son3,'3')
-            G.add_edge(vertex,son4,'4')
+                j=vertex[1]
+                k=vertex[2]
+                son1=(i,j,k+1)
+                son2=(2^(k+1)-i,2^k-j,k+1)
+                son3=(i,2^k+j,k+1)
+                son4=(2^(k+1)-i,2^(k+1)-j,k+1)
+                G.add_edge(vertex,son1,'1')
+                G.add_edge(vertex,son2,'2')
+                G.add_edge(vertex,son3,'3')
+                G.add_edge(vertex,son4,'4')
     return G
 
 def vertex_to_position(vertex,m):
@@ -40,6 +40,21 @@ def vertex_to_position(vertex,m):
     j=vertex[1]
     k=vertex[2]
     return (i*m-j)/(2^(k+1))
+
+def relabel_to_position(G,m):
+    r"""Return a copy of G with relabel the vertices of G  by the position in a subdeck 
+    using m as subdeck size"""
+    espace=""
+    graph=G.copy()
+    relabel_dict={}
+    for vertex in graph.vertices():
+        i=vertex[0]
+        j=vertex[1]
+        k=vertex[2]
+        relabel_dict[vertex]=LatexExpr(espace + str((i*m-j)/2^k) + espace)
+        espace=espace + " "
+    graph.relabel(relabel_dict)
+    return graph
 
 def my_view(x, **options):
     r"""
@@ -59,7 +74,7 @@ def my_view(x, **options):
     latex_options = {
         'format': "dot2tex",
         'prog' : 'dot',
-        'edge_labels': True,
+        'edge_labels': False ,
         'color_by_label' : { "1":"blue", "2":"red","3":"green","4":"yellow"},
         }
     if x._latex_opts is not None:
