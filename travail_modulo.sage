@@ -94,7 +94,7 @@ def my_view(x, **options):
     x.set_latex_options(**latex_options)
     view(x, **options)
 
-def is_first_apparition_unique(G,integer=false):
+def is_first_apparition_unique(G,integer=true):
     r"""For a modulo graph, the methods verify that the first apparition of a position is unique
     (i.e. the first level that contains this position  containe this position only one time)
 
@@ -107,9 +107,20 @@ def is_first_apparition_unique(G,integer=false):
     position_visite=set()
     vertices=G.get_vertices()
     sorted_vertices=[set() for _ in range(0,G.radius()+1)]
-    #ici le range est bcp trop grand pour rien
     for vertex in vertices:
         sorted_vertices[vertex[2]-1].add(vertex)
-    print sorted_vertices
+
+    for line in sorted_vertices:
+        list_new_position=[]
+        set_new_position=set()
+        for vertex in line:
+            if (G.get_vertex(vertex) in ZZ or integer==False) and G.get_vertex(vertex) not in position_visite:
+                list_new_position.append(G.get_vertex(vertex))
+                set_new_position.add(G.get_vertex(vertex))
+        if len(list_new_position)!=len(set_new_position):
+            return False
+
+        for vertex in line:
+            position_visite.add(G.get_vertex(vertex))
 
     return True
