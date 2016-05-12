@@ -39,7 +39,7 @@ def vertex_to_position(vertex,m):
     i=vertex[0]
     j=vertex[1]
     k=vertex[2]
-    return (i*m-j)/(2^(k+1))
+    return (i*m-j)/(2^k)
 
 def associate_position_to_vertex(G,m):
     r"""Add to each vertex the associate position for a subdeck of size m"""
@@ -66,6 +66,13 @@ def relabel_to_position(G,m,trim=False):
                 graph.delete_vertex(vertex)
 
     return graph
+
+def trim_non_integer(G):
+    r"""For a graph with associate position, remove all the vertices with non intger position"""
+    for vertex in G.get_vertices():
+        if G.get_vertex(vertex) not in ZZ:
+            G.delete_vertex(vertex)
+    return G
 
 def my_view(x, **options):
     r"""
