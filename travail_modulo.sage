@@ -74,6 +74,19 @@ def trim_non_integer(G):
             G.delete_vertex(vertex)
     return G
 
+def average_vertex(vertex1,vertex2):
+    r"""Return the average vertex of 2 vertex on the same line of the graph"""
+    assert (vertex1[2]==vertex2[2]), "Pas deux sommets de la même ligne"
+    i=vertex1[0]+vertex2[0]
+    j=vertex1[1]+vertex2[1]
+    fi=list(factor(i))
+    fj=list(factor(i))
+    assert (fi[0][1]==fj[0][1]),"Pas la même puissance de 2 dans i et j"
+    a=i/2^fi[0][1]
+    b=j/2^fj[0][1]
+    c=vertex1[2]-fi[0][1]+1
+    return (a,b,c)
+
 def my_view(x, **options):
     r"""
     In order to use this function to output nice PDF images of the
