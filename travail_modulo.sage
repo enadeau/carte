@@ -36,6 +36,7 @@ def graph_modulo(n):
     return G
 
 def vertex_to_position(vertex,m):
+    r"""Convert a vertex to a position"""
     i=vertex[0]
     j=vertex[1]
     k=vertex[2]
@@ -72,6 +73,23 @@ def trim_non_integer(G):
     for vertex in G.get_vertices():
         if G.get_vertex(vertex) not in ZZ:
             G.delete_vertex(vertex)
+    return G
+
+def trim_non_first_apparition(G):
+    r"""For a graph with associate postion, keep only the first apparition of
+    each integer position"""
+    trim_non_integer(G)
+    visited_vertex=set()
+    vertices=G.get_vertices()
+    sorted_vertices=[set() for _ in range(0,G.radius()+1)]
+    for vertex in vertices:
+        sorted_vertices[vertex[2]-1].add(vertex)
+
+    for line in sorted_vertices:
+        for vertex in line:
+            if G.get_vertex(vertex) in visited_vertex:
+                G.delete_vertex(vertex)
+            visited_vertex.add(G.get_vertex(vertex))
     return G
 
 def average_vertex(vertex1,vertex2):
