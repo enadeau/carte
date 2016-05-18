@@ -44,6 +44,7 @@ def vertex_to_position(vertex,m):
 
 def associate_position_to_vertex(G,m):
     r"""Add to each vertex the associate position for a subdeck of size m"""
+    assert (mod(m,2)==1), "m must be odd"
     for vertex in G.vertices():
         G.set_vertex(vertex,vertex_to_position(vertex,m))
     return G

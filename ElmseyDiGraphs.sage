@@ -29,13 +29,13 @@ def horseshoe_shuffles_as_permutations(n):
 
     deck = Melange(n)
     deck.in_horse()
-    #shuffles['in'] = deck.to_permutation().inverse()
-    shuffles['in'] = deck.to_permutation()
+    shuffles['in'] = deck.to_permutation().inverse()
+    #shuffles['in'] = deck.to_permutation()
 
     deck = Melange(n)
     deck.out_horse()
-    #shuffles['out'] = deck.to_permutation().inverse()
-    shuffles['out'] = deck.to_permutation()
+    shuffles['out'] = deck.to_permutation().inverse()
+    #shuffles['out'] = deck.to_permutation()
 
 
     return shuffles
