@@ -163,3 +163,22 @@ def is_first_apparition_unique(G,integer=true):
             position_visite.add(G.get_vertex(vertex))
 
     return True
+
+def sequence_elmsley_modulo(G,i):
+    r"""
+    INPUTS: G-graph trim with first apparition only for a deck of n cards
+            i-position modulo m
+
+    OUTPUT: The elmsey the sequences to the top """
+    graph=G.copy().reverse()
+    v=[vertex for vertex in G.get_vertices() if G.get_vertex(vertex)==i][0]
+    seq=''
+    while v!=(1,1,1):
+        t=graph.edges_incident(v)
+        if t[0][2]=='1' or t[0][2]=='2':
+            seq=seq+'o'
+        else:
+            seq=seq+'i'
+        v=t[0][1]
+    return seq
+

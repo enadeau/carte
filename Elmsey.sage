@@ -295,3 +295,12 @@ def sequence_elmsley_formater(n,i):
             w=w[:(-(k+1))]+'|*|'+w[-(k+1):]
             retour.append(w)
         return retour 
+
+def sequence_elmsley_to_middle_card(n,i):
+    r"""Return the shortest sequence for a car to the middle card"""
+    assert (mod(n,2)==0),"n doit être pair"
+    assert (i<n and 0<=i), "i doit être entre 0 et n-1"
+    if i in position_frontiere(n):
+        return None
+    else:
+        return sequence_elmsley_formater(n,i)[0].split('|*|')[0][:-1]
