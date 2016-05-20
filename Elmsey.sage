@@ -249,19 +249,26 @@ def longueur_selon_n(n):
     liste=[len(sequence_elmsley(n,i)[0]) for i in range(n)]
     return liste
 
-def mot_sspaquet(taille):
+def mot_sspaquet(taille_ss_paquet, nb_ss_paquet):
     r"""Gives the list for the lenght of the sequences to get a card in a subdeck to a boundary
     Est-ce que ça marche vraiment, c'est quoi les fondement mathématique de ça"""
-    mot=[]
-    for i in range(1,taille/2+1):
-        seq=sequence_elmsley_formater(2*taille,i)
-        seq=seq[0].split('|*|')[0]
-        mot.append(len(seq))
-    extension=mot[:-1]
-    extension=extension[::-1]
-    mot.extend(extension)
-    return mot
+    l=[]
+    taille=taille_ss_paquet*nb_ss_paquet
+    for n in range(0,nb_ss_paquet):
+        mot=[]
+        for i in range(n*taille_ss_paquet,(n+1)*taille_ss_paquet):
+            seq=sequence_elmsley_formater(2*taille,i)
+            seq=seq[0].split('|*|')[0]
+            mot.append(len(seq))
+        l.append(mot[1:-1])
+
+    for m in l:
+        assert (m==l[0]), "Les mots ne sont pas les même pour tout les sous-paquet, l'hypothèse de cette méthode semble fausse"
     
+    print l[0]
+    assert (l[0][::-1]==l[0]), "La séquences n'est pas symétrique"
+    return l[0]
+
 def position_frontiere(n):
     r"""Return the list of boundary position in a deck of n cards"""
     factorisation=factor(n)
