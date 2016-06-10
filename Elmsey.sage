@@ -265,7 +265,6 @@ def mot_sspaquet(taille_ss_paquet, nb_ss_paquet):
     for m in l:
         assert (m==l[0]), "Les mots ne sont pas les même pour tout les sous-paquet, l'hypothèse de cette méthode semble fausse"
     
-    print l[0]
     assert (l[0][::-1]==l[0]), "La séquences n'est pas symétrique"
     return l[0]
 
