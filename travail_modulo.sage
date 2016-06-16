@@ -182,3 +182,28 @@ def sequence_elmsley_modulo(G,i):
         v=t[0][1]
     return seq
 
+def construct_N(maxi,m,trim=True):
+    r"""Compute the position on each level of the graph. Keep only integer position if trim==True"""
+    G=graph_modulo(maxi)
+    associate_position_to_vertex(G,m)
+    if trim:
+        trim_non_integer(G)
+    niveau=dict()
+    for vertex in G.get_vertices().keys():
+        k=vertex[2]
+        if k in niveau.keys():
+            niveau[k].add(G.get_vertex(vertex))
+        else:
+            niveau[k]=set([G.get_vertex(vertex)])
+    return niveau
+
+def sansnom(max_m,max_k):
+    for m in range(1,max_m+1,2):
+        N=construct_N(7,m)
+        for k in N.keys():
+            if p+1 in N[k]:
+                A={}
+                for i in range(1,k):
+                    A.union(N[i])
+                if p not in A or p+1 not in A:
+                    print (m,k,p)
