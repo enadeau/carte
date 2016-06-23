@@ -47,3 +47,14 @@ def is_first_apparition_unique(nb_carte):
                 if out(nb_carte,c) in list_U[i-1] and inn(nb_carte,c) in list_U[i-1]:
                     return False
     return True
+
+def is_first_contigu_apparition(nb_carte):
+    list_U=dict([(i,U(i,nb_carte)) for i in range(1,8)])
+    for i in range(nb_carte):
+        prec=set()
+        for k in list_U.keys():
+            if k!=1:
+                prec=prec.union(list_U[k-1])
+            if {i,i+1}.issubset(list_U[k]) and i not in position_frontiere(nb_carte):
+                if i not in  prec and i+1 not in prec: 
+                    print (i,k,nb_carte) 
