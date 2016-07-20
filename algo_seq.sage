@@ -43,7 +43,7 @@ def seq_to_middle(n,x):
                 tree.add_edges([(p,(p-1)/2,1),(p,m-1-(p-1)/2,0)])
         last_line=added_vertices
 
-    #Reading the tree to construct the sequence, the short way
+    #Reading the tree to construct the sequence
     seq=""
     sommet=x%m
     while sommet!=(m-1)/2:
@@ -61,17 +61,4 @@ def seq_to_middle(n,x):
             else:
                 seq+='o'
         sommet=tree.incoming_edges(sommet)[0][0]
-    return seq
-
-    #Reading the tree to construct the sequence, the long way
-    seq=""
-    while x%m!=(m-1)/2:
-        op=tree.incoming_edges(x%m)[0][2]
-        if op==0:
-            seq=seq+'o'
-            x=out(n,x)
-        else:
-            seq=seq+'i'
-            x=inn(n,x)
-
     return seq
